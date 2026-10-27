@@ -1,0 +1,5 @@
+
+const toggle=document.querySelector('.menu-toggle');const nav=document.querySelector('.nav-links');
+if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});}
+document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+document.querySelectorAll('form[data-contact-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();const data=new FormData(form);const subject=encodeURIComponent('SEO inquiry from KS SEO Solutions website');const body=encodeURIComponent(`Name: ${data.get('name')}\nEmail: ${data.get('email')}\nWebsite: ${data.get('website')||'Not provided'}\nService: ${data.get('service')||'Not specified'}\n\nMessage:\n${data.get('message')}`);const email=form.dataset.email||'YOUR_EMAIL@example.com';if(email.includes('YOUR_EMAIL')){alert('Please edit the contact email in contact.html and replace YOUR_EMAIL@example.com with your real email address.');return;}window.location.href=`mailto:${email}?subject=${subject}&body=${body}`;}));
