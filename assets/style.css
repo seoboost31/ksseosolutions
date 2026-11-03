@@ -375,6 +375,71 @@ button,input,textarea,select{font:inherit;color:inherit}
 .text-center{text-align:center}
 
 
+/* 18. SEO visual elements (decorative only) ------------------------------- */
+/* Home hero: search-result mockup + floating badges */
+.hero-visual{flex-direction:column;gap:16px}
+.hero-visual{display:flex;align-items:center;justify-content:center}
+.serp{
+  width:min(100%,410px);padding:14px;border-radius:20px;
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  box-shadow:var(--shadow-lg);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.serp svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.serp-bar{display:flex;align-items:center;gap:10px;height:38px;padding:0 14px;border-radius:999px;background:rgba(255,255,255,.94);color:var(--brand)}
+.serp-bar i{display:block;width:46%;height:7px;border-radius:4px;background:#cfe1d8}
+.serp-row{display:flex;align-items:center;gap:12px;margin-top:10px;padding:10px 12px;border-radius:12px;border:1px solid transparent}
+.serp-row>div{flex:1;min-width:0}
+.serp-row i{display:block;height:6px;margin:5px 0;border-radius:3px;background:rgba(255,255,255,.22)}
+.serp-row i:first-child{height:8px;background:rgba(255,255,255,.4)}
+.serp-dot{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.18)}
+.serp-row .w60{width:60%}.serp-row .w70{width:70%}.serp-row .w85{width:85%}.serp-row .w95{width:95%}
+.serp-row.is-top{background:rgba(245,185,66,.12);border-color:rgba(245,185,66,.55)}
+.serp-row.is-top .serp-dot{background:var(--accent)}
+.serp-row.is-top i:first-child{background:var(--accent-300)}
+.serp-row.is-top svg{color:var(--accent);fill:var(--accent);stroke:var(--accent)}
+
+.hero-badge{
+  position:absolute;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;
+  background:#fff;color:var(--brand);box-shadow:var(--shadow-lg);
+}
+.hero-badge svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hero-badge.pin{top:2px;right:-6px;background:var(--accent);color:var(--navy-900)}
+.hero-badge.link{bottom:96px;right:-12px}
+
+/* Inner pages: SEO illustration on the right of the page header */
+.page-hero{position:relative;overflow:hidden}
+.page-hero .container{position:relative;z-index:1}
+.page-hero h1,.page-hero p{max-width:620px}
+.page-hero::after{
+  content:"";position:absolute;z-index:0;pointer-events:none;
+  right:max(24px,calc((100% - 1160px)/2));top:50%;transform:translateY(-50%);
+  width:400px;height:286px;background:url(seo-illustration.svg) center/contain no-repeat;
+}
+
+/* Dark sections: link-network texture */
+.section.dark{position:relative;overflow:hidden}
+.section.dark::before{content:"";position:absolute;inset:0;pointer-events:none;background:url(seo-network.svg) center/520px auto repeat;opacity:.4}
+.section.dark>.container{position:relative}
+
+/* Call to action: rising trend line */
+.cta{position:relative;overflow:hidden}
+.cta::after{content:"";position:absolute;right:0;bottom:0;width:min(620px,60%);height:100%;pointer-events:none;background:url(seo-trend.svg) right bottom/contain no-repeat}
+.cta .container{position:relative;z-index:1}
+
+@media (max-width:980px){
+  .page-hero::after{display:none}
+  .page-hero h1,.page-hero p{max-width:none}
+  .hero-visual{min-height:0}
+}
+@media (max-width:640px){
+  .hero-badge{display:none}
+  .serp{padding:12px}
+  .cta::after{opacity:.5}
+}
+
+
 /* 17. Responsive --------------------------------------------------------- */
 @media (max-width:1040px){
   .menu-toggle{display:grid}
