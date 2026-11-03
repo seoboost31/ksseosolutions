@@ -109,7 +109,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 .nav-links{display:flex;align-items:center;gap:4px;font-size:.92rem;font-weight:600}
 .nav-links a:not(.btn){padding:9px 13px;border-radius:10px;color:#3b2d4d;transition:background .2s,color .2s}
 .nav-links a:not(.btn):hover{background:var(--brand-50);color:var(--brand)}
-.nav-links a[aria-current="page"]:not(.btn){background:var(--brand-50);color:var(--brand)}
+.nav-links a[aria-current]:not(.btn){background:var(--brand-50);color:var(--brand)}
 .nav-links .btn{margin-left:8px;color:#fff}
 
 .menu-toggle{display:none;flex:none;width:44px;height:44px;padding:0;place-items:center;border:1px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
@@ -440,6 +440,35 @@ button,input,textarea,select{font:inherit;color:inherit}
 }
 
 
+/* 19. Navigation dropdown (Locations) ------------------------------------ */
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-item>a:not(.btn){padding-right:4px}
+.sub-toggle{
+  display:grid;place-items:center;width:28px;height:36px;margin-left:-2px;padding:0;
+  border:0;border-radius:8px;background:transparent;color:#3b2d4d;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.sub-toggle svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.nav-item:hover>a:not(.btn),.nav-item:focus-within>a:not(.btn){background:var(--brand-50);color:var(--brand)}
+.nav-item:hover .sub-toggle,.sub-toggle:hover,.sub-toggle:focus-visible{color:var(--brand)}
+.nav-item.open .sub-toggle svg{transform:rotate(180deg)}
+.submenu{
+  position:absolute;left:0;top:calc(100% + 8px);z-index:60;min-width:240px;margin:0;padding:8px;list-style:none;
+  background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .2s,transform .2s,visibility .2s;
+}
+.submenu::before{content:"";position:absolute;left:0;right:0;top:-10px;height:10px}
+.nav-item:hover .submenu,.nav-item:focus-within .submenu,.nav-item.open .submenu{opacity:1;visibility:visible;transform:none}
+.nav-links .submenu a{display:block;padding:10px 12px;border-radius:10px;white-space:nowrap}
+
+/* 20. Locations ----------------------------------------------------------- */
+.location-card .card-icon{margin-bottom:18px}
+.location-card h3{font-size:1.2rem}
+.location-card .state{display:block;margin:-4px 0 12px;color:var(--muted);font-size:.84rem;font-weight:600;letter-spacing:.02em}
+.placeholder-note{padding:28px;border:1px dashed #cdbde0;border-radius:var(--radius);background:#fbf8fe;color:var(--muted)}
+
+
 /* 17. Responsive --------------------------------------------------------- */
 @media (max-width:1040px){
   .menu-toggle{display:grid}
@@ -485,4 +514,18 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+@media (max-width:1040px){
+  .nav-item{flex-wrap:wrap}
+  .nav-item>a:not(.btn){flex:1;padding-right:14px}
+  .sub-toggle{width:44px;height:44px;margin:0}
+  .submenu{
+    position:static;display:none;width:100%;min-width:0;margin:0 0 6px;padding:0 0 0 14px;
+    border:0;border-left:2px solid var(--line);border-radius:0;box-shadow:none;
+    opacity:1;visibility:visible;transform:none;
+  }
+  .submenu::before{display:none}
+  .nav-item.open .submenu{display:block}
+  .nav-item:hover .submenu,.nav-item:focus-within .submenu{opacity:1}
 }
