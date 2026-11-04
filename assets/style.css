@@ -469,6 +469,18 @@ button,input,textarea,select{font:inherit;color:inherit}
 .placeholder-note{padding:28px;border:1px dashed #cdbde0;border-radius:var(--radius);background:#fbf8fe;color:var(--muted)}
 
 
+/* 21. Red-flag list */
+.flag-list{margin:0;padding:0;list-style:none}
+.flag-list li{position:relative;margin:12px 0;padding-left:32px;color:var(--text)}
+.flag-list li::before{
+  content:"\2715";position:absolute;left:0;top:2px;
+  display:grid;place-items:center;width:21px;height:21px;border-radius:50%;
+  background:#fde6f3;color:#b0307f;font-size:.7rem;font-weight:900;line-height:1;
+}
+.faq details{padding:18px 0}
+.faq summary{font-size:1.02rem}
+
+
 /* 17. Responsive --------------------------------------------------------- */
 @media (max-width:1040px){
   .menu-toggle{display:grid}
