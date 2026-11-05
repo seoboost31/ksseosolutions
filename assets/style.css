@@ -500,7 +500,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 
 
 /* 17. Responsive --------------------------------------------------------- */
-@media (max-width:1040px){
+@media (max-width:1180px){
   .menu-toggle{display:grid}
   .nav-links{
     display:none;position:absolute;left:0;right:0;top:calc(100% + 8px);
@@ -546,7 +546,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 
-@media (max-width:1040px){
+@media (max-width:1180px){
   .nav-item{flex-wrap:wrap}
   .nav-item>a:not(.btn){flex:1;padding-right:14px}
   .sub-toggle{width:44px;height:44px;margin:0}
@@ -558,4 +558,14 @@ button,input,textarea,select{font:inherit;color:inherit}
   .submenu::before{display:none}
   .nav-item.open .submenu{display:block}
   .nav-item:hover .submenu,.nav-item:focus-within .submenu{opacity:1}
+}
+
+/* Header fit with the Industries menu */
+@media (min-width:1181px) and (max-width:1560px){
+  .nav-wrap{gap:14px}
+  .brand{white-space:nowrap;font-size:.98rem}
+  .brand small{display:none}
+  .nav-links{gap:0;font-size:.88rem}
+  .nav-links a:not(.btn){padding:9px 9px;white-space:nowrap}
+  .nav-links .btn{white-space:nowrap;margin-left:6px}
 }
