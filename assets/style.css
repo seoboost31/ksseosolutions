@@ -363,7 +363,7 @@ button,input,textarea,select{font:inherit;color:inherit}
 .person-card{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:box-shadow .25s,transform .25s}
 .person-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .portrait-wrap{padding:28px;background:linear-gradient(180deg,#f1e8fa,#e6d6f5);text-align:center}
-.portrait{width:100%;max-width:420px;height:420px;margin:0 auto;object-fit:cover;object-position:center 22%;border:6px solid #fff;border-radius:20px;box-shadow:0 0 0 3px var(--accent),0 18px 36px -16px rgba(60,34,102,.45)}
+.portrait{display:block;width:100%;max-width:300px;height:auto;aspect-ratio:1/1;margin:0 auto;object-fit:cover;object-position:center 18%;border:6px solid #fff;border-radius:50%;box-shadow:0 0 0 3px var(--accent),0 18px 36px -16px rgba(60,34,102,.45)}
 .person-info{padding:26px 30px 32px}
 .role-label{display:inline-block;padding:5px 12px;border-radius:100px;background:var(--brand-50);color:var(--brand);font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
 .person-info h2{margin:14px 0 4px;font-size:1.6rem;letter-spacing:-.03em}
@@ -539,7 +539,7 @@ button,input,textarea,select{font:inherit;color:inherit}
   .field.full{grid-column:auto}
   .contact-panel{padding:24px 20px}
   .footer-grid{grid-template-columns:1fr;gap:32px}
-  .portrait{height:auto;aspect-ratio:4/5}
+  .portrait{max-width:260px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -595,3 +595,14 @@ button,input,textarea,select{font:inherit;color:inherit}
 @keyframes wa-bob{0%,92%,100%{transform:translateY(0)}95%{transform:translateY(-7px)}98%{transform:translateY(0)}}
 @media (max-width:640px){.wa-float{right:14px;bottom:14px;height:54px}.wa-float .wa-icon{width:54px;height:54px}}
 @media (prefers-reduced-motion:reduce){.wa-float,.wa-float .wa-icon::before,.wa-float .wa-icon::after{animation:none}}
+
+/* Certifications by person */
+.cert-person{display:flex;align-items:center;gap:16px;margin:0 0 6px}
+.cert-person .avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 0 0 2px var(--accent)}
+.cert-person h2{margin:0;font-size:1.7rem;letter-spacing:-.03em}
+.cert-person span{display:block;color:var(--brand);font-weight:700;font-size:.95rem;margin-top:2px}
+.cert-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:center;margin-top:26px}
+.cert-frame{display:block;margin:0}
+.cert-frame img{display:block;width:100%;height:auto;border:8px solid #fff;border-radius:16px;box-shadow:0 0 0 3px var(--accent),0 24px 48px -24px rgba(60,34,102,.5)}
+.cert-divider{border:0;border-top:1px solid var(--line);margin:56px 0 0}
+@media (max-width:900px){.cert-layout{grid-template-columns:1fr}}
