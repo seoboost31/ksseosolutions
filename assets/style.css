@@ -717,3 +717,6 @@ html.js [data-reveal-ready] .reveal.in{opacity:1;transform:none}
 .offer-cta small{color:#e3d2f2}
 @media (max-width:820px){.offer-card{grid-template-columns:1fr;padding:26px}.offer-band{padding-top:36px}}
 @media (prefers-reduced-motion:reduce){.offer-card::after{animation:none}}
+.upw-grid{grid-template-columns:repeat(3,1fr);gap:22px;max-width:1180px}
+@media (max-width:1100px){.upw-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:820px){.upw-grid{grid-template-columns:1fr}}
