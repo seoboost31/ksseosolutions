@@ -606,3 +606,68 @@ button,input,textarea,select{font:inherit;color:inherit}
 .cert-frame img{display:block;width:100%;height:auto;border:8px solid #fff;border-radius:16px;box-shadow:0 0 0 3px var(--accent),0 24px 48px -24px rgba(60,34,102,.5)}
 .cert-divider{border:0;border-top:1px solid var(--line);margin:56px 0 0}
 @media (max-width:900px){.cert-layout{grid-template-columns:1fr}}
+
+/* ===== Motion: scroll reveal, counters, expert cards ===== */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;background:linear-gradient(90deg,var(--brand),var(--accent));transition:width .1s linear}
+html.js [data-reveal-ready] .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
+html.js [data-reveal-ready] .reveal.reveal-left{transform:translateX(-36px)}
+html.js [data-reveal-ready] .reveal.reveal-right{transform:translateX(36px)}
+html.js [data-reveal-ready] .reveal.reveal-zoom{transform:scale(.92)}
+html.js [data-reveal-ready] .reveal.in{opacity:1;transform:none}
+
+/* hero expert card */
+.hero-team{position:relative;width:100%;max-width:430px;padding:18px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(8px);color:#fff;box-shadow:0 24px 60px -30px rgba(0,0,0,.6)}
+.ht-head{display:flex;align-items:center;gap:16px}
+.ht-avatars{display:flex;flex:none}
+.ht-avatars img{width:62px;height:62px;border-radius:50%;object-fit:cover;object-position:center 18%;border:3px solid #fff;box-shadow:0 0 0 2px var(--accent);margin-left:-18px;animation:ht-float 5s ease-in-out infinite}
+.ht-avatars img:first-child{margin-left:0}
+.ht-avatars img:nth-child(2){animation-delay:.6s}
+.ht-avatars img:nth-child(3){animation-delay:1.2s}
+.ht-head strong{display:block;font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:1.02rem;line-height:1.25}
+.ht-head span{display:block;margin-top:3px;color:#e6d3f7;font-size:.82rem}
+.ht-rows{display:grid;gap:10px;margin-top:16px}
+.ht-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);opacity:0;transform:translateX(24px);animation:ht-in .7s ease forwards}
+.ht-row:nth-child(1){animation-delay:.5s}.ht-row:nth-child(2){animation-delay:.8s}
+.ht-row b{display:block;font-size:.92rem}.ht-row small{display:block;color:#d9c5ee;font-size:.78rem;margin-top:1px}
+.ring{position:relative;flex:none;width:46px;height:46px}
+.ring svg{width:46px;height:46px;transform:rotate(-90deg)}
+.ring .ring-bg{fill:none;stroke:rgba(255,255,255,.18);stroke-width:4}
+.ring .ring-fg{fill:none;stroke:#7ee2a8;stroke-width:4;stroke-linecap:round;stroke-dasharray:125.66;stroke-dashoffset:125.66;animation:ring-fill 1.8s .8s ease forwards}
+.ring em{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:.7rem}
+@keyframes ring-fill{to{stroke-dashoffset:calc(125.66 * (1 - var(--p)))}}
+@keyframes ht-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes ht-in{to{opacity:1;transform:none}}
+
+/* expert (Upwork) cards */
+.upw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:980px;margin-inline:auto}
+.upw-card{padding:28px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);transition:transform .3s,box-shadow .3s}
+.upw-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.upw-top{display:flex;align-items:center;gap:18px}
+.upw-avatar{position:relative;flex:none;width:92px;height:92px}
+.upw-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center 18%;border:4px solid #fff;box-shadow:0 0 0 3px var(--accent),0 14px 30px -14px rgba(60,34,102,.5)}
+.upw-avatar::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px dashed var(--accent);opacity:.7;animation:upw-spin 18s linear infinite}
+.upw-card h3{display:flex;align-items:center;gap:8px;margin:0;font-size:1.35rem;letter-spacing:-.03em}
+.upw-verified{width:20px;height:20px;color:#2b6fe6}
+.upw-role{margin:6px 0 0;color:var(--muted);font-size:.9rem;line-height:1.4}
+.upw-badges{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 0}
+.upw-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:100px;background:var(--brand-50);color:var(--navy-950);font-weight:700;font-size:.85rem}
+.upw-badge .ring{width:34px;height:34px}.upw-badge .ring svg{width:34px;height:34px}
+.upw-badge .ring .ring-bg{stroke:#e3d5f2}.upw-badge .ring .ring-fg{stroke:#18a957;stroke-width:5;animation:none}
+.upw-badge .ring em{font-size:0}
+.upw-badge .hex{width:34px;height:34px;color:#2b6fe6}
+.upw-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.upw-stats strong{display:block;font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:1.9rem;letter-spacing:-.04em;color:var(--navy-950)}
+.upw-stats span{color:var(--muted);font-size:.85rem}
+.upw-note{margin:22px auto 0;max-width:640px;text-align:center;color:var(--muted);font-size:.85rem}
+.reveal.in .upw-badge .ring-fg,.upw-card.in .ring-fg{animation:ring-fill 1.6s .3s ease forwards}
+.upw-avatar{animation:ht-float 6s ease-in-out infinite}
+@keyframes upw-spin{to{transform:rotate(360deg)}}
+@media (max-width:820px){.upw-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.hero-team{padding:14px}.ht-avatars img{width:52px;height:52px}}
+@media (prefers-reduced-motion:reduce){
+  html.js [data-reveal-ready] .reveal{opacity:1!important;transform:none!important}
+  .ht-row{opacity:1;transform:none;animation:none}
+  .ring .ring-fg{animation:none;stroke-dashoffset:calc(125.66 * (1 - var(--p)))}
+  .ht-avatars img,.upw-avatar,.upw-avatar::after{animation:none}
+}
+@media (max-width:820px){html.js [data-reveal-ready] .reveal-left,html.js [data-reveal-ready] .reveal-right{transform:translateY(24px)}html.js [data-reveal-ready] .reveal-left.in,html.js [data-reveal-ready] .reveal-right.in{transform:none}}

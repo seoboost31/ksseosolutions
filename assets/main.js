@@ -90,3 +90,81 @@
     });
   });
 })();
+
+(function () {
+  'use strict';
+  var root = document.querySelector('[data-reveal-ready]');
+  if (!root) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* scroll progress bar */
+  var bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  bar.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(bar);
+  function progress() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? Math.min(100, window.scrollY / h * 100) : 0) + '%';
+  }
+  progress();
+  window.addEventListener('scroll', progress, { passive: true });
+
+  /* tag elements to reveal */
+  var sel = '.section-head, .card, .package-item, .person-card, .team-roster li, .stat, .compare-wrap, .faq details, .content-grid > *, .upw-card, .team-feature > *, .cta-inner > *, .flag-list li, .check-list li';
+  var items = Array.prototype.slice.call(root.querySelectorAll(sel));
+  items.forEach(function (el) {
+    if (el.closest('.hero-visual')) return;
+    el.classList.add('reveal');
+    var sib = Array.prototype.indexOf.call(el.parentNode.children, el);
+    el.style.transitionDelay = Math.min(sib, 5) * 90 + 'ms';
+    if (el.classList.contains('person-card') || el.closest('.team-feature')) {
+      if (el.matches('.team-feature > *')) el.classList.add(sib === 0 ? 'reveal-left' : 'reveal-right');
+    }
+    if (el.classList.contains('compare-wrap')) el.classList.add('reveal-zoom');
+  });
+
+  /* counters */
+  function count(el) {
+    var end = parseFloat(el.getAttribute('data-count')), pre = el.getAttribute('data-prefix') || '', suf = el.getAttribute('data-suffix') || '';
+    if (reduce) { el.textContent = pre + end + suf; return; }
+    var t0 = null, dur = 1500;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(end * e) + (p === 1 ? suf : '');
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var counted = new WeakSet();
+  function run(el) {
+    el.classList.add('in');
+    el.querySelectorAll('[data-count]').forEach(function (c) {
+      if (!counted.has(c)) { counted.add(c); count(c); }
+    });
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { run(el); });
+    document.querySelectorAll('[data-count]').forEach(count);
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { run(en.target); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+  items.forEach(function (el) { if (!el.closest('.hero-visual')) io.observe(el); });
+
+  /* counters outside revealed items (e.g. hero) */
+  document.querySelectorAll('.hero-team [data-count]').forEach(function (c) { setTimeout(function () { count(c); }, 600); });
+
+  /* gentle parallax on hero visual */
+  var hv = document.querySelector('.hero-visual');
+  if (hv && !reduce) {
+    window.addEventListener('scroll', function () {
+      var y = Math.min(window.scrollY, 600);
+      hv.style.transform = 'translateY(' + (y * 0.06) + 'px)';
+    }, { passive: true });
+  }
+})();
