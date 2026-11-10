@@ -841,3 +841,4 @@ html:not(.js) .gs-bar i{width:var(--w)}
 .steps-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media(max-width:1000px){.steps-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.steps-4{grid-template-columns:1fr}}
+.wa-btn{background:#25d366;color:#fff;border-color:#25d366;display:inline-flex;align-items:center}.wa-btn:hover{background:#1ebe5a;border-color:#1ebe5a;color:#fff}
