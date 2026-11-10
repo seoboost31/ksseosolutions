@@ -110,7 +110,7 @@
   window.addEventListener('scroll', progress, { passive: true });
 
   /* tag elements to reveal */
-  var sel = '.section-head, .card, .package-item, .person-card, .team-roster li, .stat, .compare-wrap, .faq details, .content-grid > *, .upw-card, .up-card, .team-feature > *, .cta-inner > *, .flag-list li, .check-list li';
+  var sel = '.section-head, .card, .package-item, .person-card, .team-roster li, .stat, .compare-wrap, .faq details, .content-grid > *, .upw-card, .up-card, .gs-card, .team-feature > *, .cta-inner > *, .flag-list li, .check-list li';
   var items = Array.prototype.slice.call(root.querySelectorAll(sel));
   items.forEach(function (el) {
     if (el.closest('.hero-visual')) return;
@@ -126,13 +126,15 @@
   /* counters */
   function count(el) {
     var end = parseFloat(el.getAttribute('data-count')), pre = el.getAttribute('data-prefix') || '', suf = el.getAttribute('data-suffix') || '';
+    var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
     var fm = function (v) { return el.hasAttribute('data-sep') ? v.toLocaleString('en-US') : v; };
-    if (reduce) { el.textContent = pre + fm(end) + suf; return; }
+    var rd = function (v) { return dec ? v.toFixed(dec) : Math.round(v); };
+    if (reduce) { el.textContent = pre + (dec ? rd(end) : fm(end)) + suf; return; }
     var t0 = null, dur = 1500;
     function step(t) {
       if (t0 === null) t0 = t;
       var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
-      el.textContent = pre + fm(Math.round(end * e)) + (p === 1 ? suf : '');
+      el.textContent = pre + (dec ? rd(end * e) : fm(Math.round(end * e))) + (p === 1 ? suf : '');
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
