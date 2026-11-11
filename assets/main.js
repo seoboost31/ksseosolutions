@@ -81,7 +81,7 @@
         'Service: ' + (data.get('service') || 'Not specified') + '\n\n' +
         'Message:\n' + data.get('message')
       );
-      var email = form.dataset.email || 'YOUR_EMAIL@example.com';
+      var email = form.dataset.email || 'inforankoraseo@smallbusinessdenver.us';
       if (email.indexOf('YOUR_EMAIL') !== -1) {
         alert('Please edit the contact email in contact.html and replace YOUR_EMAIL@example.com with your real email address.');
         return;
