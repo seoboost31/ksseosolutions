@@ -848,4 +848,4 @@ html:not(.js) .gs-bar i{width:var(--w)}
 .topbar .container{align-items:center;padding-top:2px;padding-bottom:2px}
 .topbar a{color:#fff;text-decoration:none;font-weight:600}
 .topbar a:hover{color:var(--accent)}
-@media (max-width:720px){.topbar .container{justify-content:center;text-align:center}.topbar a{display:none}}
+.topbar .container{justify-content:center}
